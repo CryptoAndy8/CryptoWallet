@@ -1,0 +1,14 @@
+import secrets
+import hashlib
+
+def generate_wallet():
+    private_key = secrets.token_hex(32)
+    public_key = hashlib.sha256(private_key.encode()).hexdigest()
+    address = hashlib.sha256(public_key.encode()).hexdigest()[:34]
+    return private_key, public_key, address
+
+if __name__ == "__main__":
+    private_key, public_key, address = generate_wallet()
+    print("Private Key:", private_key)
+    print("Public Key:", public_key)
+    print("Address:", address)
